@@ -35,6 +35,12 @@
             <li class="nav-item">
                 <a class="nav-link" href="<%=request.getContextPath()%>/candidates.jsp">Кандидаты</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.jsp">Добавить кандидата</a>
+            </li>
         </ul>
     </div>
     <div class="row">
@@ -55,6 +61,23 @@
             </div>
         </div>
     </div>
+    <div class="row pt-3">
+        <div class="card" style="width: 100%">
+            <div class="card-header">
+                Добавить вакансию
+            </div>
+            <div class="card-body">
+            </div>
+        </div>
+    </div><div class="row pt-3">
+    <div class="card" style="width: 100%">
+        <div class="card-header">
+            Добавить кандидата
+        </div>
+        <div class="card-body">
+        </div>
+    </div>
+</div>
 </div>
 </body>
 </html>
