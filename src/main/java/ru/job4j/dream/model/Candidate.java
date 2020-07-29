@@ -1,18 +1,18 @@
-package ru.jobj.dream.model;
+package ru.job4j.dream.model;
 
 import java.util.Objects;
 
 /**
- * ru.jobj.dream.model
+ * ru.job4j.dream.model
  *
  * @author romanvohmin
  * @since 29.07.2020
  */
-public class Post {
+public class Candidate {
     private int id;
     private String name;
 
-    public Post(int id, String name) {
+    public Candidate(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -41,12 +41,12 @@ public class Post {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Post post = (Post) o;
-        return id == post.id;
+        Candidate candidate = (Candidate) o;
+        return id == candidate.id && Objects.equals(name, candidate.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, name);
     }
 }

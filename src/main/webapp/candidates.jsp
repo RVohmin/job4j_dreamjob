@@ -5,9 +5,9 @@
   Time: 17:11
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="ru.jobj.dream.model.Post" %>
-<%@ page import="ru.jobj.dream.store.Store" %>
-<%@ page import="ru.jobj.dream.model.Candidate" %>
+<%@ page import="ru.job4j.dream.model.Post" %>
+<%@ page import="ru.job4j.dream.store.Store" %>
+<%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!doctype html>

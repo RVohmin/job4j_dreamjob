@@ -5,8 +5,8 @@
   Time: 21:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="ru.jobj.dream.model.Post" %>
-<%@ page import="ru.jobj.dream.store.Store" %>
+<%@ page import="ru.job4j.dream.model.Post" %>
+<%@ page import="ru.job4j.dream.store.Store" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!doctype html>
@@ -39,10 +39,10 @@
                 Новая вакансия.
             </div>
             <div class="card-body">
-                <form>
+                <form action="<%=request.getContextPath()%>/post/save" method="post">
                     <div class="form-group">
                         <label>Имя</label>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="name">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
