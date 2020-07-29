@@ -7,6 +7,7 @@
 --%>
 <%@ page import="ru.jobj.dream.model.Post" %>
 <%@ page import="ru.jobj.dream.store.Store" %>
+<%@ page import="ru.jobj.dream.model.Candidate" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!doctype html>
@@ -47,9 +48,9 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Post post : Store.instOf().findAll()) { %>
+                    <% for (Candidate can : Store.instOf().findAllCandidates()) { %>
                     <tr>
-                        <td><%= post.getName() %>
+                        <td><%= can.getName() %>
                         </td>
                     </tr>
                     <% } %>
