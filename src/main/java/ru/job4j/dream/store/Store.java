@@ -26,9 +26,9 @@ public class Store {
         posts.put(1, new Post(1, "Junior Java Job"));
         posts.put(2, new Post(2, "Middle Java Job"));
         posts.put(3, new Post(3, "Senior Java Job"));
-        candidates.put(1, new Candidate(1, "Junior Java"));
-        candidates.put(2, new Candidate(2, "Middle Java"));
-        candidates.put(3, new Candidate(3, "Senior Java"));
+        candidates.put(1, new Candidate(1, "Иван Петров"));
+        candidates.put(2, new Candidate(2, "Петр Арсентьев"));
+        candidates.put(3, new Candidate(3, "Николай Васечкин"));
     }
 
     public static Store instOf() {
@@ -43,6 +43,10 @@ public class Store {
         return candidates.values();
     }
 
+    public Collection<Post> findAllPosts() {
+        return posts.values();
+    }
+
     public void save(Post post) {
         if (post.getId() == 0) {
             post.setId(POST_ID.incrementAndGet());
@@ -50,12 +54,18 @@ public class Store {
         posts.put(post.getId(), post);
     }
 
-    public Post findById(int id) {
+    public Post findPostById(int id) {
         return posts.get(id);
     }
 
+    public Candidate findCandidateById(int id) {
+        return candidates.get(id);
+    }
+
     public void save(Candidate candidate) {
-        candidate.setId(CANDIDATE_ID.incrementAndGet());
+        if (candidate.getId() == 0) {
+            candidate.setId(CANDIDATE_ID.incrementAndGet());
+        }
         candidates.put(candidate.getId(), candidate);
     }
 }

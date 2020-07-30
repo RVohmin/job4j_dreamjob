@@ -5,9 +5,9 @@
   Time: 17:11
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page import="ru.job4j.dream.model.Post" %>
 <%@ page import="ru.job4j.dream.store.Store" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
+<%@ page import="java.util.Collection" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!doctype html>
@@ -38,19 +38,23 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Вакансии
+                Кандидаты
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead>
                     <tr>
-                        <th scope="col">Названия</th>
+                        <th scope="col">Список кандидатов</th>
                     </tr>
                     </thead>
                     <tbody>
-                    <% for (Candidate can : Store.instOf().findAllCandidates()) { %>
+                    <% for (Candidate candidate : (Collection<Candidate>) request.getAttribute("candidates")) { %>
                     <tr>
-                        <td><%= can.getName() %>
+                        <td>
+                            <a href="<%=request.getContextPath()%>/candidate/edit.jsp?id=<%=candidate.getId()%>">
+                                <i class="fa fa-edit mr-3"></i>
+                            </a>
+                            <%=candidate.getName()%>
                         </td>
                     </tr>
                     <% } %>
