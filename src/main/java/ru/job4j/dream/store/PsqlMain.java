@@ -13,7 +13,7 @@ public class PsqlMain {
         Store store = PsqlStore.instOf();
 //        store.save(new Post(2, "Java Jobs"));
 //        store.saveCandidate(new Candidate(0, "Петр Арсентьев"));
-        store.save(new Candidate(2, "Роман Вохмин"));
+        store.save(new Candidate(2, "Роман Вохмин "));
         for (Candidate candidate : store.findAllCandidates()) {
             System.out.println(candidate.getId() + " " + candidate.getName());
         }
