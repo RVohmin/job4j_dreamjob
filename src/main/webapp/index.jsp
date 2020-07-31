@@ -1,5 +1,5 @@
 <%@ page import="ru.job4j.dream.model.Post" %>
-<%@ page import="ru.job4j.dream.store.Store" %>
+<%@ page import="ru.job4j.dream.store.MemStore" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
 
 <!doctype html>
