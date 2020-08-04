@@ -63,6 +63,9 @@
         <li class="nav-item">
             <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> | Выйти</a>
+        </li>
     </ul>
 
     <div class="row">
