@@ -65,6 +65,7 @@
                     <c:forEach items="${candidates}"
                                var="cand"> <%-- candidates - коллекция полученная из CandidateServlet --%>
                         <c:set var="candPhotoID" scope="request" value="${cand.photoId}"/>
+
                         <c:forEach items="${photos}" var="photo">
                             <c:if test="${candPhotoID == photo.id}">
                                 <c:set var="photoName" scope="request" value="${photo.name}"/>
