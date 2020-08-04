@@ -39,12 +39,14 @@
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/auth.do" method="post">
                     <div class="form-group">
-                        <label>Почта</label>
+                        <label>Почта
                         <input type="text" class="form-control" name="email">
+                        </label>
                     </div>
                     <div class="form-group">
-                        <label>Пароль</label>
+                        <label>Пароль
                         <input type="text" class="form-control" name="password">
+                        </label>
                     </div>
                     <button type="submit" class="btn btn-primary">Войти</button>
                 </form>
