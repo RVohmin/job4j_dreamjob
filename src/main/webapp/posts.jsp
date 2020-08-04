@@ -47,7 +47,9 @@
             <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> | Выйти</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">
+                <jsp:useBean id="user" scope="request" type="javax.xml.stream.util.StreamReaderDelegate"/>
+            <c:out value="${user.name}"/> | Выйти</a>
         </li>
     </ul>
 
@@ -64,6 +66,7 @@
                     </tr>
                     </thead>
                     <tbody>
+                   <jsp:useBean id="posts" scope="request" type="java.util.List"/>
                    <c:forEach items="${posts}" var="post"> <%-- posts - коллекция полученная из PostServlet --%>
                         <tr>
                             <td>
