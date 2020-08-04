@@ -5,6 +5,7 @@
   Time: 21:17
   To change this template use File | Settings | File Templates.
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="ru.job4j.dream.model.Candidate" %>
 <%@ page import="ru.job4j.dream.store.PsqlStore" %>
 <%@ page contentType="text/html; charset=UTF-8" %>
@@ -34,33 +35,61 @@
 <body>
 <%
     String id = request.getParameter("id");
-    Candidate candidate = new Candidate(0, "");
+    Candidate candidate = new Candidate(0, "", 0);
     if (id != null) {
         candidate = PsqlStore.instOf().findCandidateById(Integer.parseInt(id));
     }
 %>
+<%
+    String photoId = (String) request.getAttribute("photoId");
+    if (photoId == null && candidate.getId() > 0) {
+        photoId = String.valueOf(candidate.getPhotoId());
+    }
+%>
 <div class="container pt-3">
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/index.jsp">Главная</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Вакансии</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Кандидаты</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Добавить вакансию</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
+        </li>
+    </ul>
+
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
                 <% if (id == null) { %>
-                Новый Кандидат.
+                    <% if (photoId == null) { %>
+                        <a href='<c:redirect url="/upload"/>'></a>
+                    <% } else { %>
+                        Новый кандидат.
+                    <% } %>
                 <% } else { %>
-                Редактирование данных кандидата.
+                    Редактирование кандидата.
                 <% } %>
             </div>
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/candidates.do?id=<%=candidate.getId()%>" method="post">
                     <div class="form-group">
-                        <label>
-                            Имя
-                            <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
-                        </label>
+                        <label>Имя</label>
+                        <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
+                        <input type="hidden" name="photoId" value="<%=photoId%>">
                     </div>
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>
             </div>
         </div>
     </div>
-</div></body>
+</div>
+</body>
 </html>
