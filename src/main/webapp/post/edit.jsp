@@ -57,7 +57,8 @@
             <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="/login.jsp"> <c:out value="${user.name}"/> | Выйти</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp">
+                <c:out value="${user.name}"/> | Выйти</a>
         </li>
     </ul>
 
@@ -73,7 +74,6 @@
             <div class="card-body">
                 <form action="<%=request.getContextPath()%>/posts.do?id=<%=post.getId()%>" method="post">
                     <div class="form-group">
-<%--                        <label>Имя</label>--%>
                         <label>
                             Имя
                             <input type="text" class="form-control" name="name" value="<%=post.getName()%>">
