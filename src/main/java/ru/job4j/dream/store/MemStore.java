@@ -13,42 +13,44 @@ import ru.job4j.dream.model.Post;
 import ru.job4j.dream.model.User;
 
 import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class MemStore implements Store {
     private static final MemStore INST = new MemStore();
-    private static final AtomicInteger POST_ID = new AtomicInteger(4);
-    private static final AtomicInteger CANDIDATE_ID = new AtomicInteger(4);
+    private static final AtomicInteger POST_ID = new AtomicInteger(0);
+    private static final AtomicInteger CANDIDATE_ID = new AtomicInteger(0);
+    private static final AtomicInteger USER_ID = new AtomicInteger(0);
+    private static final AtomicInteger PHOTOS_ID = new AtomicInteger(0);
 
     private final Map<Integer, Post> posts = new ConcurrentHashMap<>();
     private final Map<Integer, Candidate> candidates = new ConcurrentHashMap<>();
+    private final Map<Integer, User> users = new ConcurrentHashMap<>();
+    private final Map<Integer, Photo> photos = new ConcurrentHashMap<>();
 
     private MemStore() {
         posts.put(1, new Post(1, "Junior Java Job"));
         posts.put(2, new Post(2, "Middle Java Job"));
         posts.put(3, new Post(3, "Senior Java Job"));
-        candidates.put(1, new Candidate(1, "Иван Петров"));
-        candidates.put(2, new Candidate(2, "Петр Арсентьев"));
-        candidates.put(3, new Candidate(3, "Николай Васечкин"));
+        candidates.put(1, new Candidate(1, "Иван Петров", 1));
+        candidates.put(2, new Candidate(2, "Петр Арсентьев", 1));
+        candidates.put(3, new Candidate(3, "Николай Васечкин", 1));
+        users.put(1, new User(1, "Alex", "root@root.com", "root"));
+        photos.put(1, new Photo(1, "Саша.jpg"));
     }
 
     public static MemStore instOf() {
         return INST;
     }
 
-    public Collection<Post> findAll() {
-        return posts.values();
-    }
-
-    public Collection<Candidate> findAllCandidates() {
-        return candidates.values();
-    }
-
+    //POST
     public Collection<Post> findAllPosts() {
         return posts.values();
+    }
+
+    public Post findPostById(int id) {
+        return posts.get(id);
     }
 
     public void save(Post post) {
@@ -58,37 +60,23 @@ public class MemStore implements Store {
         posts.put(post.getId(), post);
     }
 
-    public Post findPostById(int id) {
-        return posts.get(id);
+    //CANDIDATES
+    public Collection<Candidate> findAllCandidates() {
+        return candidates.values();
+    }
+
+    @Override
+    public void savePost(Post post) {
+
+    }
+
+    @Override
+    public void saveCandidate(Candidate candidate) {
+
     }
 
     public Candidate findCandidateById(int id) {
         return candidates.get(id);
-    }
-
-    @Override
-    public List<Photo> findAllPhoto() {
-        return null;
-    }
-
-    @Override
-    public List<User> findAllUser() {
-        return null;
-    }
-
-    @Override
-    public User findUserById(int id) {
-        return null;
-    }
-
-    @Override
-    public User findUserByEmail(String email) {
-        return null;
-    }
-
-    @Override
-    public void save(User user) {
-
     }
 
     public void save(Candidate candidate) {
@@ -98,8 +86,41 @@ public class MemStore implements Store {
         candidates.put(candidate.getId(), candidate);
     }
 
+    //PHOTO
     @Override
-    public Photo save(Photo photo) {
+    public Collection<Photo> findAllPhoto() {
+        return photos.values();
+    }
+
+    //USER
+    @Override
+    public Collection<User> findAllUser() {
+        return users.values();
+    }
+
+    @Override
+    public Photo savePhoto(Photo photo) {
+        return photo;
+    }
+
+    @Override
+    public User findUserById(int id) {
         return null;
+    }
+
+    @Override
+    public User findUserByEmail(String email) {
+        User user;
+        for (Map.Entry<Integer, User> entry : users.entrySet()) {
+            user = entry.getValue();
+            if (user.getEmail().equals(email)) {
+                return user;
+            }
+        }
+        return null;
+    }
+
+    @Override
+    public void saveUser(User user) {
     }
 }

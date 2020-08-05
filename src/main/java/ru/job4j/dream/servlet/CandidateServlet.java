@@ -18,8 +18,6 @@ import java.io.IOException;
 public class CandidateServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("CandidateServlet, doGet");
-
         req.setAttribute("candidates", PsqlStore.instOf().findAllCandidates());
         req.setAttribute("photos", PsqlStore.instOf().findAllPhoto());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
@@ -27,10 +25,8 @@ public class CandidateServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        System.out.println("CandidateServlet, doPost");
-
         req.setCharacterEncoding("UTF-8");
-        PsqlStore.instOf().save(
+        PsqlStore.instOf().saveCandidate(
                 new Candidate(
                         Integer.parseInt(req.getParameter("id")),
                         req.getParameter("name"),

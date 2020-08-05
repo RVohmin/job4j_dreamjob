@@ -6,7 +6,6 @@ import ru.job4j.dream.model.Post;
 import ru.job4j.dream.model.User;
 
 import java.util.Collection;
-import java.util.List;
 
 /**
  * ru.job4j.dream.store && ru.job4j.dream.store
@@ -19,23 +18,23 @@ public interface Store {
 
     Collection<Candidate> findAllCandidates();
 
-    void save(Post post);
+    void savePost(Post post);
 
-    void save(Candidate candidate);
+    void saveCandidate(Candidate candidate);
 
-    Photo save(Photo photo);
+    Photo savePhoto(Photo photo);
 
     Post findPostById(int id);
 
     Candidate findCandidateById(int id);
 
-    List<Photo> findAllPhoto();
+    Collection<Photo> findAllPhoto();
 
-    List<User> findAllUser();
+    Collection<User> findAllUser();
 
     User findUserById(int id);
 
     User findUserByEmail(String email);
 
-    void save(User user);
+    void saveUser(User user);
 }

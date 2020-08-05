@@ -64,6 +64,10 @@
                 </div>
                 <br>
                 <div class="col-sm-4">
+                    <input type="password" name="password" class="form-control" placeholder="password">
+                </div>
+                <br>
+                <div class="col-sm-4">
                     <button type="submit" class="btn btn-primary btn-lg" style="width: 134px">Submit</button>
                 </div>
             </div>

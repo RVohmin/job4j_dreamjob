@@ -93,7 +93,7 @@ public class PsqlStore implements Store {
     }
 
     @Override
-    public void save(Post post) {
+    public void savePost(Post post) {
         if (post.getId() == 0) {
             createPost(post);
         } else {
@@ -101,7 +101,7 @@ public class PsqlStore implements Store {
         }
     }
 
-    private Post createPost(Post post) {
+    private void createPost(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("INSERT INTO post(name) VALUES (?) ", PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
@@ -115,10 +115,9 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return post;
     }
 
-    private Post updatePost(Post post) {
+    private void updatePost(Post post) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("UPDATE post SET name = ? WHERE id = ?")
         ) {
@@ -128,7 +127,6 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return post;
     }
 
     //CANDIDATE
@@ -172,7 +170,7 @@ public class PsqlStore implements Store {
     }
 
     @Override
-    public void save(Candidate candidate) {
+    public void saveCandidate(Candidate candidate) {
         if (candidate.getId() == 0) {
             createCandidate(candidate);
         } else {
@@ -180,7 +178,7 @@ public class PsqlStore implements Store {
         }
     }
 
-    private Candidate createCandidate(Candidate candidate) {
+    private void createCandidate(Candidate candidate) {
         try (Connection cn = pool.getConnection();
              PreparedStatement cand = cn.prepareStatement("INSERT INTO candidate(name, photo_id) VALUES (?, ?)", PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
@@ -195,10 +193,9 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return candidate;
     }
 
-    private Candidate updateCandidate(Candidate candidate) {
+    private void updateCandidate(Candidate candidate) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("UPDATE candidate SET name=? WHERE id = ?")
         ) {
@@ -208,7 +205,6 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return candidate;
     }
 
     //PHOTO
@@ -250,17 +246,16 @@ public class PsqlStore implements Store {
     }
 
     @Override
-    public Photo save(Photo photo) {
+    public Photo savePhoto(Photo photo) {
         if (photo.getId() == 0) {
-            photo = create(photo);
-            return photo;
+            create(photo);
         } else {
             update(photo);
         }
-        return null;
+        return photo;
     }
 
-    private Photo create(Photo photo) {
+    private void create(Photo photo) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("INSERT INTO photo(name) VALUES (?)", PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
@@ -274,7 +269,6 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return photo;
     }
 
     private void update(Photo photo) {
@@ -352,7 +346,7 @@ public class PsqlStore implements Store {
     }
 
     @Override
-    public void save(User user) {
+    public void saveUser(User user) {
         if (user.getId() == 0) {
             createUser(user);
         } else {
@@ -360,7 +354,7 @@ public class PsqlStore implements Store {
         }
     }
 
-    private User createUser(User user) {
+    private void createUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
                      "INSERT INTO users(name, email, password) VALUES (?, ?, ?)",
@@ -378,10 +372,10 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return user;
+//        return user;
     }
 
-    private User updateUser(User user) {
+    private void updateUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement("UPDATE users SET name = ?, email = ?, password = ? WHERE id = ?")
         ) {
@@ -393,6 +387,5 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return user;
     }
 }

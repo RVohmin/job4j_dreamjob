@@ -19,12 +19,11 @@ public class RegServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
-        System.out.println("doPost RegServlet: password - " + req.getParameter("password"));
         User user = new User(0,
                 req.getParameter("login"),
                 req.getParameter("email"),
                 req.getParameter("password"));
-        PsqlStore.instOf().save(user);
+        PsqlStore.instOf().saveUser(user);
         HttpSession sc = req.getSession();
         sc.setAttribute("user", user);
         resp.sendRedirect(req.getContextPath() + "/index.do");
