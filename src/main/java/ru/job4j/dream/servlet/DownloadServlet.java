@@ -16,14 +16,12 @@ import java.io.IOException;
 public class DownloadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws IOException {
-        System.out.println("DownloadServlet doGet");
         String name = req.getParameter("name");
         resp.setContentType("name=" + name);
         resp.setContentType("image/png");
         resp.setHeader("Content-Disposition",
                 "attachment; filename=" + File.pathSeparator + name);
         File file = new File("images" + File.separator + name);
-        System.out.println("DownloadServlet 25: " + file);
         try (FileInputStream in = new FileInputStream(file)) {
             resp.getOutputStream().write(in.readAllBytes());
         }

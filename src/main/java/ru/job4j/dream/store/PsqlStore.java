@@ -332,6 +332,25 @@ public class PsqlStore implements Store {
     }
 
     @Override
+    public User findUserByEmail(String email) {
+        User user = null;
+        try (Connection cn = pool.getConnection();
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM users WHERE email = ?", PreparedStatement.RETURN_GENERATED_KEYS)
+        ) {
+            ps.setString(1, email);
+            ResultSet resultSet = ps.executeQuery();
+            resultSet.next();
+            String name = resultSet.getString("name");
+            int id = resultSet.getInt("id");
+            String password = resultSet.getString("password");
+            user = new User(id, name, email, password);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    @Override
     public void save(User user) {
         if (user.getId() == 0) {
             createUser(user);
@@ -343,7 +362,7 @@ public class PsqlStore implements Store {
     private User createUser(User user) {
         try (Connection cn = pool.getConnection();
              PreparedStatement ps = cn.prepareStatement(
-                     "INSERT INTO users(name, email, password) VALUES (?, ?, ?) ",
+                     "INSERT INTO users(name, email, password) VALUES (?, ?, ?)",
                      PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, user.getName());

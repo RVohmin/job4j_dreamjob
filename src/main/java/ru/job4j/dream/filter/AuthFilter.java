@@ -13,7 +13,7 @@ import java.io.IOException;
  */
 public class AuthFilter implements Filter {
     @Override
-    public void init(FilterConfig filterConfig) throws ServletException {
+    public void init(FilterConfig filterConfig) {
     }
 
     @Override
@@ -21,11 +21,15 @@ public class AuthFilter implements Filter {
         HttpServletRequest req = (HttpServletRequest) sreq;
         HttpServletResponse resp = (HttpServletResponse) sresp;
         String uri = req.getRequestURI();
-        if (uri.endsWith("auth.do")) {
+        System.out.println("AuthFilter uri: " + uri);
+        if (uri.endsWith("auth.do") || uri.endsWith("reg.do")) {
+            System.out.println("in filter");
             chain.doFilter(sreq, sresp);
+            System.out.println("after chain");
             return;
         }
         if (req.getSession().getAttribute("user") == null) {
+            System.out.println("Filter: user not registered");
             resp.sendRedirect(req.getContextPath() + "/login.jsp");
             return;
         }
