@@ -46,6 +46,7 @@ public class PsqlStore implements Store {
         pool.setMinIdle(5);
         pool.setMaxIdle(10);
         pool.setMaxOpenPreparedStatements(100);
+
     }
 
     private static final class Lazy {
