@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.org/RVohmin/job4j_dreamjob.svg?branch=master)](https://travis-ci.org/RVohmin/job4j_dreamjob)
 
 # проект "Работа мечты"
 
