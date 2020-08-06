@@ -18,6 +18,7 @@
         <maven.compiler.source>14</maven.compiler.source>
         <maven.compiler.target>14</maven.compiler.target>
     </properties>
+
     <dependencies>
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
@@ -26,13 +27,6 @@
             <version>4.13</version>
             <scope>test</scope>
         </dependency>
-<!--        &lt;!&ndash; https://mvnrepository.com/artifact/org.mockito/mockito-all &ndash;&gt;-->
-<!--        <dependency>-->
-<!--            <groupId>org.mockito</groupId>-->
-<!--            <artifactId>mockito-all</artifactId>-->
-<!--            <version>1.10.19</version>-->
-<!--            <scope>test</scope>-->
-<!--        </dependency>-->
         <!-- https://mvnrepository.com/artifact/org.powermock/powermock-api-mockito2 -->
         <dependency>
             <groupId>org.powermock</groupId>
@@ -76,49 +70,62 @@
             <version>1.4</version>
         </dependency>
     </dependencies>
-    <!--  <dependencies>-->
-    <!--    <dependency>-->
-    <!--      <groupId>junit</groupId>-->
-    <!--      <artifactId>junit</artifactId>-->
-    <!--      <version>4.11</version>-->
-    <!--      <scope>test</scope>-->
-    <!--    </dependency>-->
-    <!--  </dependencies>-->
 
-    <!--  <build>-->
-    <!--    <finalName>job4j_dreamjob</finalName>-->
-    <!--    <pluginManagement>&lt;!&ndash; lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) &ndash;&gt;-->
-    <!--      <plugins>-->
-    <!--        <plugin>-->
-    <!--          <artifactId>maven-clean-plugin</artifactId>-->
-    <!--          <version>3.2.0</version>-->
-    <!--        </plugin>-->
-    <!--        &lt;!&ndash; see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging &ndash;&gt;-->
-    <!--        <plugin>-->
-    <!--          <artifactId>maven-resources-plugin</artifactId>-->
-    <!--          <version>3.0.2</version>-->
-    <!--        </plugin>-->
-    <!--        <plugin>-->
-    <!--          <artifactId>maven-compiler-plugin</artifactId>-->
-    <!--          <version>3.8.0</version>-->
-    <!--        </plugin>-->
-    <!--        <plugin>-->
-    <!--          <artifactId>maven-surefire-plugin</artifactId>-->
-    <!--          <version>2.22.2</version>-->
-    <!--        </plugin>-->
-    <!--        <plugin>-->
-    <!--          <artifactId>maven-war-plugin</artifactId>-->
-    <!--          <version>3.2.2</version>-->
-    <!--        </plugin>-->
-    <!--        <plugin>-->
-    <!--          <artifactId>maven-install-plugin</artifactId>-->
-    <!--          <version>2.5.2</version>-->
-    <!--        </plugin>-->
-    <!--        <plugin>-->
-    <!--          <artifactId>maven-deploy-plugin</artifactId>-->
-    <!--          <version>2.8.2</version>-->
-    <!--        </plugin>-->
-    <!--      </plugins>-->
-    <!--    </pluginManagement>-->
-    <!--  </build>-->
+      <build>
+        <finalName>job4j_dreamjob</finalName>
+        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+          <plugins>
+            <plugin>
+              <artifactId>maven-clean-plugin</artifactId>
+              <version>3.1.0</version>
+            </plugin>
+            <!-- see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging -->
+            <plugin>
+              <artifactId>maven-resources-plugin</artifactId>
+              <version>3.0.2</version>
+            </plugin>
+            <plugin>
+              <artifactId>maven-compiler-plugin</artifactId>
+              <version>3.8.0</version>
+            </plugin>
+            <plugin>
+              <artifactId>maven-surefire-plugin</artifactId>
+              <version>2.22.2</version>
+            </plugin>
+            <plugin>
+              <artifactId>maven-war-plugin</artifactId>
+              <version>3.2.2</version>
+            </plugin>
+            <plugin>
+              <artifactId>maven-install-plugin</artifactId>
+              <version>2.5.2</version>
+            </plugin>
+            <plugin>
+              <artifactId>maven-deploy-plugin</artifactId>
+              <version>2.8.2</version>
+            </plugin>
+
+              <plugin>
+                  <groupId>org.jacoco</groupId>
+                  <artifactId>jacoco-maven-plugin</artifactId>
+                  <version>0.8.5</version>
+                  <executions>
+                      <execution>
+                          <goals>
+                              <goal>prepare-agent</goal>
+                          </goals>
+                      </execution>
+                      <execution>
+                          <id>report</id>
+                          <phase>test</phase>
+                          <goals>
+                              <goal>report</goal>
+                          </goals>
+                      </execution>
+                  </executions>
+              </plugin>
+
+          </plugins>
+        </pluginManagement>
+      </build>
 </project>
