@@ -89,6 +89,13 @@
                                 <img src="<c:url value='/download?name=${photoName}'/>" width="100px"
                                      height="100px"/>
                             </td>
+                            <td>
+                                <p>
+                                    <a href='<c:url value="/del.do?id=${cand.id}"/>' class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span> <i class="fa fa-trash "></i> Удалить кандидата
+                                    </a>
+                                </p>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

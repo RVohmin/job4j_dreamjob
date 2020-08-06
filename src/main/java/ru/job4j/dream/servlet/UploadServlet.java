@@ -28,7 +28,6 @@ import java.util.List;
 public class UploadServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("UploadServlet, doGet");
         String redirect = "";
         if (req.getAttribute("photoId") == null) {
             List<String> images = new ArrayList<>();
@@ -46,7 +45,6 @@ public class UploadServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        System.out.println("UploadServlet, doPost");
         req.setCharacterEncoding("UTF-8");
         Photo photo = null;
         DiskFileItemFactory factory = new DiskFileItemFactory();
@@ -61,7 +59,6 @@ public class UploadServlet extends HttpServlet {
                 folder.mkdir();
             }
             for (FileItem item : items) {
-                System.out.println(item);
                 photo = PsqlStore.instOf().savePhoto(new Photo(0, item.getName()));
                 if (!item.isFormField()) {
                     File file = new File(folder + File.separator + item.getName());

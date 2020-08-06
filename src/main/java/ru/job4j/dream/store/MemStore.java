@@ -71,6 +71,11 @@ public class MemStore implements Store {
     }
 
     @Override
+    public void deletePost(String id) {
+
+    }
+
+    @Override
     public void saveCandidate(Candidate candidate) {
 
     }
@@ -109,18 +114,23 @@ public class MemStore implements Store {
     }
 
     @Override
-    public User findUserByEmail(String email) {
-        User user;
+    public User findUserByEmailPassword(String email, String password) {
+        User user = null;
         for (Map.Entry<Integer, User> entry : users.entrySet()) {
             user = entry.getValue();
-            if (user.getEmail().equals(email)) {
+            if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
                 return user;
             }
         }
-        return null;
+        return user;
     }
 
     @Override
     public void saveUser(User user) {
+    }
+
+    @Override
+    public void deleteCandidate(String id) {
+
     }
 }

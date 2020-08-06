@@ -34,7 +34,7 @@ public class AuthServletTest {
             when(req.getSession()).thenReturn(sc);
             when(req.getParameter("email")).thenReturn("root@root.com");
             when(req.getParameter("password")).thenReturn("root");
-            User actual = store.findUserByEmail("root@root.com");
+            User actual = store.findUserByEmailPassword("root@root.com", "root");
             new AuthServlet().doPost(req, resp);
             assertEquals("root@root.com", actual.getEmail());
         }

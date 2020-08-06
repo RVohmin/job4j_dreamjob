@@ -6,6 +6,23 @@
          xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
 
     <display-name>Archetype Created Web Application</display-name>
+    <servlet>
+        <servlet-name>DelPostServlet</servlet-name>
+        <servlet-class>ru.job4j.dream.servlet.DelPostServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelPostServlet</servlet-name>
+        <url-pattern>/delpost.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DelCandServlet</servlet-name>
+        <servlet-class>ru.job4j.dream.servlet.DelCandServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DelCandServlet</servlet-name>
+        <url-pattern>/del.do</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>RegServlet</servlet-name>

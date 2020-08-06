@@ -73,6 +73,13 @@
                                 </a>
                                 <c:out value="${post.name}"/>
                             </td>
+                            <td>
+                                <p>
+                                    <a href='<c:url value="/delpost.do?id=${post.id}"/>' class="btn btn-info btn-sm">
+                                        <span class="glyphicon glyphicon-trash"></span> <i class="fa fa-trash "></i> Удалить вакансию
+                                    </a>
+                                </p>
+                            </td>
                         </tr>
                     </c:forEach>
                     </tbody>

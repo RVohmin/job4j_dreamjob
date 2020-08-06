@@ -93,6 +93,17 @@ public class PsqlStore implements Store {
     }
 
     @Override
+    public void deletePost(String id) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement post = cn.prepareStatement("DELETE FROM post WHERE id = ?")
+        ) {
+            post.setInt(1, Integer.parseInt(id));
+            post.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    @Override
     public void savePost(Post post) {
         if (post.getId() == 0) {
             createPost(post);
@@ -202,6 +213,18 @@ public class PsqlStore implements Store {
             ps.setString(1, candidate.getName());
             ps.setInt(2, candidate.getId());
             ps.execute();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void deleteCandidate(String id) {
+        try (Connection cn = pool.getConnection();
+             PreparedStatement cand = cn.prepareStatement("DELETE FROM candidate WHERE id = ?")
+        ) {
+            cand.setInt(1, Integer.parseInt(id));
+            cand.execute();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -327,18 +350,21 @@ public class PsqlStore implements Store {
     }
 
     @Override
-    public User findUserByEmail(String email) {
+    public User findUserByEmailPassword(String email, String password) {
         User user = null;
         try (Connection cn = pool.getConnection();
-             PreparedStatement ps = cn.prepareStatement("SELECT * FROM users WHERE email = ?", PreparedStatement.RETURN_GENERATED_KEYS)
+             PreparedStatement ps = cn.prepareStatement("SELECT * FROM users WHERE email = ? AND password = ?", PreparedStatement.RETURN_GENERATED_KEYS)
         ) {
             ps.setString(1, email);
+            ps.setString(2, password);
             ResultSet resultSet = ps.executeQuery();
             resultSet.next();
-            String name = resultSet.getString("name");
             int id = resultSet.getInt("id");
-            String password = resultSet.getString("password");
-            user = new User(id, name, email, password);
+            String name = resultSet.getString("name");
+            String pass = resultSet.getString("password");
+            if (name != null && pass != null) {
+                user = new User(id, name, email, pass);
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -372,7 +398,6 @@ public class PsqlStore implements Store {
         } catch (Exception e) {
             e.printStackTrace();
         }
-//        return user;
     }
 
     private void updateUser(User user) {

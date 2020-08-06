@@ -20,6 +20,8 @@ public interface Store {
 
     void savePost(Post post);
 
+    void deletePost(String id);
+
     void saveCandidate(Candidate candidate);
 
     Photo savePhoto(Photo photo);
@@ -34,7 +36,9 @@ public interface Store {
 
     User findUserById(int id);
 
-    User findUserByEmail(String email);
+    User findUserByEmailPassword(String email, String password);
 
     void saveUser(User user);
+
+    void deleteCandidate(String id);
 }

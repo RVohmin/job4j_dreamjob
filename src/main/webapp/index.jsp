@@ -51,19 +51,20 @@
     <div class="row">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Сегодняшние вакансии.
+                Список вакансий
             </div>
             <div class="card-body">
-
+                <a class="nav-link" href="<%=request.getContextPath()%>/posts.do">Показать вакансии</a>
             </div>
         </div>
     </div>
     <div class="row pt-3">
         <div class="card" style="width: 100%">
             <div class="card-header">
-                Сегодняшние кандидаты.
+                Список кандидатов
             </div>
             <div class="card-body">
+                <a class="nav-link" href="<%=request.getContextPath()%>/candidates.do">Показать кандидатов</a>
             </div>
         </div>
     </div>
@@ -73,6 +74,7 @@
                 Добавить вакансию
             </div>
             <div class="card-body">
+                <a class="nav-link" href="<%=request.getContextPath()%>/post/edit.jsp">Перейти к добавлению вакансий</a>
             </div>
         </div>
     </div><div class="row pt-3">
@@ -81,6 +83,7 @@
             Добавить кандидата
         </div>
         <div class="card-body">
+            <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Перейти к добавлению нового кандидата</a>
         </div>
     </div>
 </div>

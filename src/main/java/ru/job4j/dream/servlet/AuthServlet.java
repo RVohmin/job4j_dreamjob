@@ -23,8 +23,8 @@ public class AuthServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         String email = req.getParameter("email");
         String password = req.getParameter("password");
-        User user = PsqlStore.instOf().findUserByEmail(email);
-        if (user.getEmail().equals(email) && user.getPassword().equals(password)) {
+        User user = PsqlStore.instOf().findUserByEmailPassword(email, password);
+        if (user != null) {
             HttpSession sc = req.getSession();
             sc.setAttribute("user", user);
             resp.sendRedirect(req.getContextPath() + "/index.do");
