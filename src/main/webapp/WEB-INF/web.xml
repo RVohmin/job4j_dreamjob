@@ -7,6 +7,15 @@
 
     <display-name>Archetype Created Web Application</display-name>
     <servlet>
+        <servlet-name>GreetingServlet</servlet-name>
+        <servlet-class>ru.job4j.dream.servlet.GreetingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>GreetingServlet</servlet-name>
+        <url-pattern>/greet</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
         <servlet-name>DelPostServlet</servlet-name>
         <servlet-class>ru.job4j.dream.servlet.DelPostServlet</servlet-class>
     </servlet>
