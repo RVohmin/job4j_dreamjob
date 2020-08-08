@@ -26,20 +26,6 @@
         });
     }
 </script>
-<script>
-    $(document).ready(function () {
-        $("button").click(function () { // задаем функцию при нажатиии на элемент <button>
-            $.getJSON("test.json", function (data, textStatus, jqXHR) { // указываем url и функцию обратного вызова
-                var out = ""; // создаем пустую строковую переменную
-                for (key in data) { // создаем цикл for in
-                    out += (key + ": " + data[key] + "<br>"); // добавляем в переменную все ключи объекта и их значения
-                }
-
-                $("div").html(out); // добавляем в элемент <div> значение переменной
-            })
-        })
-    });
-</script>
 
 <div class="container">
     <form id="form">
