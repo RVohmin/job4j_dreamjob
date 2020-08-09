@@ -7,10 +7,7 @@ package ru.job4j.dream.store;
  * @since 05.08.2020
  */
 
-import ru.job4j.dream.model.Candidate;
-import ru.job4j.dream.model.Photo;
-import ru.job4j.dream.model.Post;
-import ru.job4j.dream.model.User;
+import ru.job4j.dream.model.*;
 
 import java.util.Collection;
 import java.util.Map;
@@ -33,9 +30,9 @@ public class MemStore implements Store {
         posts.put(1, new Post(1, "Junior Java Job"));
         posts.put(2, new Post(2, "Middle Java Job"));
         posts.put(3, new Post(3, "Senior Java Job"));
-        candidates.put(1, new Candidate(1, "Иван Петров", 1));
-        candidates.put(2, new Candidate(2, "Петр Арсентьев", 1));
-        candidates.put(3, new Candidate(3, "Николай Васечкин", 1));
+        candidates.put(1, new Candidate(1, "Иван Петров", 1, 1));
+        candidates.put(2, new Candidate(2, "Петр Арсентьев", 1, 1));
+        candidates.put(3, new Candidate(3, "Николай Васечкин", 1, 1));
         users.put(1, new User(1, "Alex", "root@root.com", "root"));
         photos.put(1, new Photo(1, "Саша.jpg"));
     }
@@ -132,5 +129,15 @@ public class MemStore implements Store {
     @Override
     public void deleteCandidate(String id) {
 
+    }
+
+    @Override
+    public Collection<? extends City> findAllCity() {
+        return null;
+    }
+
+    @Override
+    public City findCityById(int id) {
+        return null;
     }
 }

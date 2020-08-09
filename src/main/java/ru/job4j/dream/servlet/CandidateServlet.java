@@ -20,17 +20,20 @@ public class CandidateServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("candidates", PsqlStore.instOf().findAllCandidates());
         req.setAttribute("photos", PsqlStore.instOf().findAllPhoto());
+        req.setAttribute("cities", PsqlStore.instOf().findAllCity());
         req.getRequestDispatcher("candidates.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
         req.setCharacterEncoding("UTF-8");
+//        System.out.println(req.getParameter("city"));
         PsqlStore.instOf().saveCandidate(
                 new Candidate(
                         Integer.parseInt(req.getParameter("id")),
                         req.getParameter("name"),
-                        Integer.parseInt(req.getParameter("photoId"))));
+                        Integer.parseInt(req.getParameter("photoId")),
+                        Integer.parseInt(req.getParameter("city"))));
         resp.sendRedirect(req.getContextPath() + "/candidates.do");
     }
 }

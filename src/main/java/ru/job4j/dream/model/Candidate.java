@@ -12,11 +12,13 @@ public class Candidate {
     private int id;
     private String name;
     private Integer photoId;
+    private Integer cityId;
 
-    public Candidate(int id, String name, Integer photoId) {
+    public Candidate(int id, String name, Integer photoId, Integer cityId) {
         this.id = id;
         this.name = name;
         this.photoId = photoId;
+        this.cityId = cityId;
     }
 
     public int getId() {
@@ -41,6 +43,14 @@ public class Candidate {
 
     public void setPhotoId(int photoId) {
         this.photoId = photoId;
+    }
+
+    public Integer getCityId() {
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+        this.cityId = cityId;
     }
 
     @Override

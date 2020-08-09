@@ -48,7 +48,8 @@
             <a class="nav-link" href="<%=request.getContextPath()%>/candidate/edit.jsp">Добавить кандидата</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> | Выйти</a>
+            <a class="nav-link" href="<%=request.getContextPath()%>/login.jsp"> <c:out value="${user.name}"/> |
+                Выйти</a>
         </li>
     </ul>
 
@@ -68,10 +69,18 @@
                     <c:forEach items="${candidates}"
                                var="cand"> <%-- candidates - коллекция полученная из CandidateServlet --%>
                         <c:set var="candPhotoID" scope="request" value="${cand.photoId}"/>
+                        <c:set var="candCityID" scope="request" value="${cand.cityId}"/>
+
 
                         <c:forEach items="${photos}" var="photo">
                             <c:if test="${candPhotoID == photo.id}">
                                 <c:set var="photoName" scope="request" value="${photo.name}"/>
+                            </c:if>
+                        </c:forEach>
+
+                        <c:forEach items="${cities}" var="city">
+                            <c:if test="${candCityID == city.id}">
+                                <c:set var="cityName" scope="request" value="${city.city}"/>
                             </c:if>
                         </c:forEach>
 
@@ -83,6 +92,9 @@
                                 <c:out value="${cand.name}"/>
                             </td>
                             <td>
+                                <c:out value="${cityName}"/>
+                            </td>
+                            <td>
                                 <a href="<c:url value='/download?name=${photoName}'/>">Download</a>
                             </td>
                             <td>
@@ -92,7 +104,8 @@
                             <td>
                                 <p>
                                     <a href='<c:url value="/del.do?id=${cand.id}"/>' class="btn btn-info btn-sm">
-                                        <span class="glyphicon glyphicon-trash"></span> <i class="fa fa-trash "></i> Удалить кандидата
+                                        <span class="glyphicon glyphicon-trash"></span> <i class="fa fa-trash "></i>
+                                        Удалить кандидата
                                     </a>
                                 </p>
                             </td>

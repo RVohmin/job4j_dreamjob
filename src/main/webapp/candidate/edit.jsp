@@ -30,12 +30,40 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script>
+        function validate() {
+            let elements = document.getElementsByTagName("input");
+            for (let i = 0, element; element = elements[i++];) {
+                console.log(element);
+                if (element.value === "") {
+                    console.log("Please fill field ")
+                    alert("Заполните поле " + element.name);
+                    return false;
+                }
+            }
+        }
+        $(document).ready(function () {
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:8080/dreamjob/city',
+                dataType: 'json'
+            }).done(function (data) {
+                $.each(data, function (index, value) {
+                    $('#city').append('<option value="' + value.id + '">' + value.city + '</option>')
+                });
+                $('#city').val(new URLSearchParams(window.location.search).get("city"));
+            }).fail(function (err) {
+                alert(err);
+            });
+        });
+    </script>
     <title>Работа мечты!</title>
 </head>
 <body>
 <%
     String id = request.getParameter("id");
-    Candidate candidate = new Candidate(0, "", 0);
+    Candidate candidate = new Candidate(0, "", 0, 0);
     if (id != null) {
         candidate = PsqlStore.instOf().findCandidateById(Integer.parseInt(id));
     }
@@ -88,7 +116,13 @@
                         <input type="text" class="form-control" name="name" value="<%=candidate.getName()%>">
                         <input type="hidden" name="photoId" value="<%=photoId%>">
                     </div>
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <div class="form-group">
+                        <label id="city_list">Город</label>
+                        <select class="form-control" id="city" name="city">
+                            <option disabled>Выберите город</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary" onclick="return validate();">Сохранить</button>
                 </form>
             </div>
         </div>

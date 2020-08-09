@@ -29,6 +29,19 @@
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script>
+        function validate() {
+            let elements = document.getElementsByTagName("input");
+            for (let i = 0, element; element = elements[i++];) {
+                console.log(element);
+                if (element.value === "") {
+                    console.log("Please fill field ")
+                    alert("Заполните поле " + element.name);
+                    return false;
+                }
+            }
+        }
+    </script>
     <title>Работа мечты!</title>
 </head>
 <body>
@@ -68,7 +81,7 @@
                 </div>
                 <br>
                 <div class="col-sm-4">
-                    <button type="submit" class="btn btn-primary btn-lg" style="width: 134px">Submit</button>
+                    <button type="submit" class="btn btn-primary btn-lg" onclick="return validate();" style="width: 134px">Submit</button>
                 </div>
             </div>
         </form>

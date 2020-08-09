@@ -29,6 +29,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
             integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
             crossorigin="anonymous"></script>
+    <script>
+        function validate() {
+            let elements = document.getElementsByTagName("input");
+            for (let i = 0, element; element = elements[i++];) {
+                console.log(element);
+                if (element.value === "") {
+                    console.log("Please fill field ")
+                    alert("Заполните поле " + element.name);
+                    return false;
+                }
+            }
+        }
+    </script>
     <title>Работа мечты!</title>
 </head>
 <body>
@@ -79,7 +92,7 @@
                             <input type="text" class="form-control" name="name" value="<%=post.getName()%>">
                         </label>
                     </div>
-                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <button type="submit" class="btn btn-primary" onclick="return validate();">Сохранить</button>
                 </form>
             </div>
         </div>

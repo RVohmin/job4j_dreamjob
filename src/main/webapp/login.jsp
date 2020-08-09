@@ -28,7 +28,19 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
             integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
             crossorigin="anonymous"></script>
-
+    <script>
+        function validate() {
+            let elements = document.getElementsByTagName("input");
+            for (let i = 0, element; element = elements[i++];) {
+                console.log(element);
+                if (element.value === "") {
+                    console.log("Please fill field ")
+                    alert("Заполните поле " + element.name);
+                    return false;
+                }
+            }
+        }
+    </script>
     <title>Работа мечты</title>
 </head>
 <body>
@@ -47,7 +59,7 @@
                 </tr>
             </table>
 
-            <form action="<%=request.getContextPath()%>/auth.do" method="post">
+            <form action="<%=request.getContextPath()%>/auth.do" id="login" method="post">
                 <div class="col-sm">
                     <label for="exampleInputEmail1">Email address</label>
                     <input type="email" name="email" class="form-control" id="exampleInputEmail1"
@@ -61,7 +73,7 @@
                 </div>
                 <br>
                 <div class="col-sm">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" onclick="return validate()">Submit</button>
                 </div>
                 <br>
             </form>
