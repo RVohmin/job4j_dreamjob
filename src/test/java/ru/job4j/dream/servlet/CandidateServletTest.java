@@ -29,6 +29,7 @@ public class CandidateServletTest {
         HttpServletResponse resp = mock(HttpServletResponse.class);
         when(req.getParameter("id")).thenReturn("1");
         when(req.getParameter("name")).thenReturn("Иван Петров");
+        when(req.getParameter("city")).thenReturn("1");
         when(req.getParameter("photoId")).thenReturn("1");
         new CandidateServlet().doPost(req, resp);
         assertEquals(store.findAllCandidates().iterator().next().getName(), "Иван Петров");
